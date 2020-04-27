@@ -11,7 +11,7 @@ class MoviesSpiderSpider(scrapy.Spider):
     allowed_domains = ['criticker.com']
     start_urls = ['https://www.criticker.com/films']
 
-    slugify_spaces_re = re.compile(r'[\d+=+\-/\\]')
+    slugify_spaces_re = re.compile(r'[\s+\=+\-\[\]\'"]')
     slugiry_remove_re = re.compile(r'\[\]{\}\'":;<>\?!@#\$%\^&\*\(\)~`')
 
     def parse(self, response: scrapy.http.response.Response) -> scrapy.Request:
@@ -57,7 +57,7 @@ class MoviesSpiderSpider(scrapy.Spider):
         r = hashlib.md5(url.strip('/').split('/')[-1].encode())
         return r.hexdigest()
 
-    def extract_more_info(self, elem: scrapy.Selector) -> t.Any[str, None]:
+    def extract_more_info(self, elem: scrapy.Selector) -> str:
         """
         Extract more infos from given scrapy selector
 
