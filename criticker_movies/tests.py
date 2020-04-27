@@ -1,5 +1,5 @@
 import unittest
-from criticker_movies.criticker_movies.spiders.movies_spider import MoviesSpiderSpider
+from criticker_movies.spiders.movies_spider import MoviesSpiderSpider
 
 
 class ScrapyTests(unittest.TestCase):
@@ -10,7 +10,7 @@ class ScrapyTests(unittest.TestCase):
     def test_slugifier(self):
         self.assertEqual(
             self.crawler.slugify('asd d[]'),
-            'asd_d'
+            'asd_d__'
         )
 
     def test_extract_label(self):
