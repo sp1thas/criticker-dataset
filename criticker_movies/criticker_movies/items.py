@@ -22,7 +22,6 @@ class CritickerMoviesItem(scrapy.Item):
     poster_url = scrapy.Field(serializer=string_serializer)
     description = scrapy.Field(serializer=string_serializer)
     genres = scrapy.Field(serializer=string_serializer)
-    franchise = scrapy.Field(serializer=string_serializer)
     countries = scrapy.Field(serializer=string_serializer)
     directors = scrapy.Field(serializer=string_serializer)
     creators = scrapy.Field(serializer=string_serializer)
