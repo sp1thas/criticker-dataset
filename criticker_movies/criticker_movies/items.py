@@ -35,4 +35,5 @@ class CritickerMoviesItem(scrapy.Item):
     type = scrapy.Field(serializer=string_serializer)
     franchises = scrapy.Field(serializer=string_serializer)
     uid = scrapy.Field(serializer=string_serializer)
+    on_netflix = scrapy.Field(serializer=int_serializer)
 

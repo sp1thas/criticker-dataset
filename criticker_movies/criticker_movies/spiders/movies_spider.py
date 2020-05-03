@@ -3,16 +3,30 @@ import scrapy
 from criticker_movies.items import CritickerMoviesItem
 import re
 import hashlib
+import pandas as pd
 import typing as t
+import gc
 
 
 class MoviesSpiderSpider(scrapy.Spider):
     name = 'movies_spider'
     allowed_domains = ['criticker.com']
-    start_urls = ['https://www.criticker.com/films']
+    start_urls = [
+        'https://www.criticker.com/netflix/'
+        'https://www.criticker.com/films',
+    ]
 
     slugify_spaces_re = re.compile(r'[\s+\=+\-\[\]\'"]')
     slugiry_remove_re = re.compile(r'\[\]{\}\'":;<>\?!@#\$%\^&\*\(\)~`')
+    already_harvested = set()
+
+    def __init__(self, old_file: str = '', **kwargs):
+        if old_file:
+            df = pd.read_json(old_file, lines=True)
+            self.already_harvested = set(_.strip('/') for _ in df['url'].astype(str) if _)
+            del df
+            gc.collect()
+        super().__init__(**kwargs)  # python3
 
     def parse(self, response: scrapy.http.response.Response) -> scrapy.Request:
         """
@@ -22,7 +36,12 @@ class MoviesSpiderSpider(scrapy.Spider):
         :return: new scrapy request
         """
         for url in response.xpath('//ul[@class="fl_titlelist"]/li/div[@class="fl_name"]/a/@href'):
-            yield scrapy.Request(url=url.extract(), callback=self.parse_movie)
+            url_val = url.extract()
+            if url_val and url_val.strip('/') in self.already_harvested:
+                continue
+            else:
+                yield scrapy.Request(url=url_val, callback=self.parse_movie,
+                                     cb_kwargs={'on_netflix': '/netflix/' in response.url})
         next_url = response.xpath('//li[@class="page-item"]/a[text() = "Next"]/@href').extract_first()
         if next_url:
             yield scrapy.Request(url=next_url, callback=self.parse)
@@ -72,7 +91,7 @@ class MoviesSpiderSpider(scrapy.Spider):
             a = None
         return a
 
-    def parse_movie(self, response: scrapy.http.response.Response) -> CritickerMoviesItem:
+    def parse_movie(self, response: scrapy.http.response.Response, on_netflix) -> CritickerMoviesItem:
         """
         Extract data from given item url
 
@@ -80,6 +99,7 @@ class MoviesSpiderSpider(scrapy.Spider):
         :return: Criticker Movies item object
         """
         movie_data = CritickerMoviesItem()
+        movie_data['on_netflix'] = int(on_netflix)
         movie_data['url'] = response.url.strip('/')
         movie_data['uid'] = self.extract_uid_from_url(movie_data['url'])
         movie_data['type'] = response.xpath('//*[@id="fi_info_type"]/text()').extract_first()
@@ -114,4 +134,3 @@ class MoviesSpiderSpider(scrapy.Spider):
         movie_data['n_ratings'] = response.xpath('//span[@itemprop="reviewCount"]/text()').extract_first()
 
         return movie_data
-
