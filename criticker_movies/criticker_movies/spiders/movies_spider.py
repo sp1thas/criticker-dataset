@@ -22,7 +22,7 @@ class MoviesSpiderSpider(scrapy.Spider):
 
     def __init__(self, old_file: str = '', **kwargs):
         if old_file:
-            df = pd.read_json(old_file, lines=True)
+            df = pd.read_csv(old_file)
             self.already_harvested = set(_.strip('/') for _ in df['url'].astype(str) if _)
             del df
             gc.collect()
