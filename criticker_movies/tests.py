@@ -1,11 +1,11 @@
 import unittest
-from criticker_movies.spiders.movies_spider import MoviesSpiderSpider
+from criticker_movies.spiders.movies_spider import (MoviesSpider, GamesSpider)
 
 
 class ScrapyTests(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.crawler = MoviesSpiderSpider()
+        self.crawler = MoviesSpider()
 
     def test_slugifier(self):
         self.assertEqual(
