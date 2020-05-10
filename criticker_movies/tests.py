@@ -1,5 +1,6 @@
 import unittest
-from criticker_movies.spiders.movies_spider import (MoviesSpider, GamesSpider)
+from criticker_movies.spiders.movies_spider import MoviesSpider
+from criticker_movies.spiders.games_spider import GamesSpider
 
 
 class ScrapyTests(unittest.TestCase):
