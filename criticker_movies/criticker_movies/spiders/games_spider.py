@@ -22,8 +22,6 @@ class GamesSpider(MoviesSpider):
         game_data['type'] = response.xpath('//*[@id="fi_info_type"]/text()').extract_first()
         game_data['name'] = response.xpath('//h1/span[@itemprop="name"]/text()').extract_first()
         game_data['date_published'] = response.xpath('//h1/span[@itemprop="datePublished"]/text()').extract_first()
-        game_data['start_date'] = response.xpath('//h1/span[@itemprop="startDate"]/text()').extract_first()
-        game_data['end_date'] = response.xpath('//h1/span[@itemprop="endDate"]/text()').extract_first()
         game_data['poster_url'] = response.xpath('//div[@id="poster"]/img/@src').extract_first()
         game_data['description'] = ' '.join([
             _.extract().strip() for _ in response.xpath('//span[@itemprop="description"]//text()')
