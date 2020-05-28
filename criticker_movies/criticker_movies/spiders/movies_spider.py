@@ -8,7 +8,7 @@ import typing as t
 import gc
 
 
-class MoviesSpiderSpider(scrapy.Spider):
+class MoviesSpider(scrapy.Spider):
     name = 'movies_spider'
     allowed_domains = ['criticker.com']
     start_urls = [
@@ -40,7 +40,7 @@ class MoviesSpiderSpider(scrapy.Spider):
             if url_val and url_val.strip('/') in self.already_harvested:
                 continue
             else:
-                yield scrapy.Request(url=url_val, callback=self.parse_movie,
+                yield scrapy.Request(url=url_val, callback=self.parse_item,
                                      cb_kwargs={'on_netflix': '/netflix/' in response.url})
         next_url = response.xpath('//li[@class="page-item"]/a[text() = "Next"]/@href').extract_first()
         if next_url:
@@ -91,7 +91,7 @@ class MoviesSpiderSpider(scrapy.Spider):
             a = None
         return a
 
-    def parse_movie(self, response: scrapy.http.response.Response, on_netflix) -> CritickerMoviesItem:
+    def parse_item(self, response: scrapy.http.response.Response, on_netflix) -> CritickerMoviesItem:
         """
         Extract data from given item url
 
