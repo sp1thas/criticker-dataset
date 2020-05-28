@@ -12,7 +12,7 @@ class MoviesSpiderSpider(scrapy.Spider):
     name = 'movies_spider'
     allowed_domains = ['criticker.com']
     start_urls = [
-        'https://www.criticker.com/netflix/'
+        'https://www.criticker.com/netflix'
         'https://www.criticker.com/films',
     ]
 
