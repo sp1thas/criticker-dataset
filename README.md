@@ -4,7 +4,7 @@
 
 Yet another dataset about Movies, TV Shows and Games.
 
-This is implementation of [Criticker Dataset](https://www.kaggle.com/sp1thas/criticker-dataset). This repository contains the necessesary spider for dataset creation alongside with some basic tests.
+This is implementation of [Criticker Dataset](https://www.kaggle.com/sp1thas/criticker-dataset). This repository contains the necessesary spiders for dataset creation alongside with some basic tests.
 
 `pipenv` module is used for virtual environment and dependency management
 
