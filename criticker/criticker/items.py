@@ -27,6 +27,9 @@ class CritickerBaseItem(scrapy.Item):
     description = scrapy.Field(serializer=string_serializer)
     date_published = scrapy.Field(serializer=int_serializer)
     franchises = scrapy.Field(serializer=string_serializer)
+    image_urls = scrapy.Field(serialize=list)
+    images = scrapy.Field()
+    countries = scrapy.Field()
 
 
 class CritickerGamesItem(CritickerBaseItem):
@@ -44,4 +47,3 @@ class CritickerMoviesItem(CritickerBaseItem):
     on_netflix = scrapy.Field(serializer=int_serializer)
     start_date = scrapy.Field(serializer=int_serializer)
     end_date = scrapy.Field(serializer=int_serializer)
-
