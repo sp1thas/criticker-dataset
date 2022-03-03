@@ -521,11 +521,11 @@
         },
         "twisted": {
             "hashes": [
-                "sha256:b5f6f129901afb655d52b9cadeebd36318acf0648aa5c768eb4ec02a6ba7ba96",
-                "sha256:f9bed1786ef7335d033861260ccd4f9a5ba8a06dcfbd68d8b6dc1eacfbb1b0e8"
+                "sha256:57f32b1f6838facb8c004c89467840367ad38e9e535f8252091345dba500b4f2",
+                "sha256:5c63c149eb6b8fe1e32a0215b1cef96fabdba04f705d8efb9174b1ccf5b49d49"
             ],
-            "markers": "python_full_version >= '3.6.7'",
-            "version": "==22.2.0rc1"
+            "index": "pypi",
+            "version": "==22.2.0"
         },
         "typing-extensions": {
             "hashes": [
