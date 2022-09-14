@@ -11,10 +11,10 @@ from ..items import CritickerMoviesItem
 
 
 class MoviesSpider(scrapy.Spider):
-    name = "MoviesSpider"
+    name = "movies_spider"
     allowed_domains = ["criticker.com"]
     start_urls = [
-        "https://www.criticker.com/netflix/" "https://www.criticker.com/films",
+        "https://www.criticker.com/films",
     ]
 
     slugify_spaces_re = re.compile(r'[\s+\=+\-\[\]\'"]')

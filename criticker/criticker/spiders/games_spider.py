@@ -5,7 +5,7 @@ from ..items import CritickerGamesItem
 
 
 class GamesSpider(MoviesSpider):
-    name = "GamesSpider"
+    name = "games_spider"
     allowed_domains = ["criticker.com"]
     start_urls = ["https://games.criticker.com/games"]
 

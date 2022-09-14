@@ -11,7 +11,7 @@ This is implementation of [Criticker Dataset](https://www.kaggle.com/sp1thas/cri
 ## Create dataset from scratch
 
 ```python
-cd criticker_movies
+cd criticker
 scrapy crawl games_spider -o games.csv # to retrieve games
 scrapy crawl movies_spider -o movies.csv # to retrieve movies
 ```
