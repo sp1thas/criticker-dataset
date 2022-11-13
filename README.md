@@ -1,6 +1,6 @@
 ![criticker-dataset](https://www.criticker.com/img/sys/title_filmstv.png) **Dataset**
 
-![build](https://github.com/sp1thas/criticker-dataset/workflows/Python%20application/badge.svg)
+![build](https://github.com/sp1thas/criticker-dataset/workflows/build/badge.svg)
 ![python-version](https://img.shields.io/badge/Python-python3.%5B7--10%5D-blue)
 [![kaggle-dataset](https://img.shields.io/badge/KAGGLE_DATASET-20beff)](https://www.kaggle.com/sp1thas/criticker-dataset/) 
 
