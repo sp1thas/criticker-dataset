@@ -5,7 +5,7 @@
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+import scrapy  # type: ignore
 
 string_serializer = lambda x: str(x) if x else None
 int_serializer = lambda x: int(x) if x else None

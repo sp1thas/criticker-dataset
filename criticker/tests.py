@@ -1,6 +1,6 @@
 import unittest
+
 from criticker.spiders.movies_spider import MoviesSpider
-from criticker.spiders.games_spider import GamesSpider
 
 
 class ScrapyTests(unittest.TestCase):
@@ -18,3 +18,7 @@ class ScrapyTests(unittest.TestCase):
         self.assertEqual(
             self.crawler.extract_uid_from_url(url), "ecba80b4d99d7c6a81b28119d82754ae"
         )
+
+
+if __name__ == "__main__":
+    unittest.main()

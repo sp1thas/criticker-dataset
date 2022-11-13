@@ -2,7 +2,7 @@
 
 import os
 
-from scrapy.pipelines.images import ImagesPipeline
+from scrapy.pipelines.images import ImagesPipeline  # type: ignore
 
 
 # Define your item pipelines here

@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "criticker-dataset"
+version = "1.0"
+description = "Implementation of Critiket Dataset"
+authors = ["Panagiotis Simakis <sp1thas@autistici.org>"]
+license = "GPL v3"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.11"
+Scrapy = "^2.7.1"
+Pillow = "^9.3.0"
+pandas = "^1.5.1"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.990"
+pandas-stubs = "^1.5.1"
+black = "^22.10.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

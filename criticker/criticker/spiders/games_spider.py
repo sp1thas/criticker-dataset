@@ -1,4 +1,4 @@
-import scrapy
+import scrapy  # type: ignore
 
 from .movies_spider import MoviesSpider
 from ..items import CritickerGamesItem

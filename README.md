@@ -6,14 +6,28 @@ Yet another dataset about Movies, TV Shows and Games.
 
 This is implementation of [Criticker Dataset](https://www.kaggle.com/sp1thas/criticker-dataset). This repository contains the necessesary spiders for dataset creation alongside with some basic tests.
 
-`pipenv` module is used for virtual environment and dependency management
+`poetry` module is used for virtual environment and dependency management
+
+## Install dependencies
+
+```shell
+poetry install
+```
 
 ## Create dataset from scratch
 
 ```python
 cd criticker
-scrapy crawl games_spider -o games.csv # to retrieve games
-scrapy crawl movies_spider -o movies.csv # to retrieve movies
+poetry run scrapy crawl games_spider -o games.csv # to retrieve games
+poetry run scrapy crawl movies_spider -o movies.csv # to retrieve movies
+```
+
+## Development
+
+### Run tests
+
+```shell
+poetry run python criticker/tests.py
 ```
 
 ## Next steps

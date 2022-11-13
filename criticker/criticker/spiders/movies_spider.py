@@ -5,7 +5,7 @@ import re
 import typing as t
 
 import pandas as pd
-import scrapy
+import scrapy  # type: ignore
 
 from ..items import CritickerMoviesItem
 
@@ -86,7 +86,7 @@ class MoviesSpider(scrapy.Spider):
         r = hashlib.md5(url.strip("/").split("/")[-1].encode())
         return r.hexdigest()
 
-    def extract_more_info(self, elem: scrapy.Selector) -> t.Optional[str]:
+    def extract_more_info(self, elem: scrapy.Selector) -> t.Optional[str]:  # type: ignore
         """
         Extract more infos from given scrapy selector
 
