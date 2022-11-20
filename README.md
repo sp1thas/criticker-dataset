@@ -3,7 +3,7 @@
 ![build](https://github.com/sp1thas/criticker-dataset/workflows/build/badge.svg)
 ![python-version](https://img.shields.io/badge/Python-3.%5B8--10%5D-blue)
 [![kaggle-dataset](https://img.shields.io/badge/KAGGLE_DATASET-20beff)](https://www.kaggle.com/sp1thas/criticker-dataset/) 
-![great_expectations](https://img.shields.io/badge/-great__expectations-white)
+[![great_expectations](https://img.shields.io/badge/-great__expectations-white)](https://storage.googleapis.com/criticker-datadoc/index.html)
 
 Yet another dataset about Movies, TV Shows and Games.
 
