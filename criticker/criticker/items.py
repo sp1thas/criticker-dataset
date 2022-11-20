@@ -1,15 +1,18 @@
-# -*- coding: utf-8 -*-
-
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://docs.scrapy.org/en/latest/topics/items.html
+from typing import Optional
 
 import scrapy  # type: ignore
 
-string_serializer = lambda x: str(x) if x else None
-int_serializer = lambda x: int(x) if x else None
-float_serializer = lambda x: float(x) if x else None
+
+def string_serializer(string: str) -> Optional[str]:
+    return str(string) if string is not None else string
+
+
+def int_serializer(string: str) -> Optional[int]:
+    return int(string) if string is not None else string
+
+
+def float_serializer(string: str) -> Optional[float]:
+    return float(string) if string is not None else string
 
 
 class CritickerBaseItem(scrapy.Item):
@@ -28,7 +31,7 @@ class CritickerBaseItem(scrapy.Item):
     date_published = scrapy.Field(serializer=int_serializer)
     franchises = scrapy.Field(serializer=string_serializer)
     image_urls = scrapy.Field(serialize=list)
-    images = scrapy.Field()
+    # images = scrapy.Field()
     countries = scrapy.Field()
 
 

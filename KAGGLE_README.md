@@ -7,6 +7,8 @@ Yet another dataset about movies. This dataset consists of more than 100K movies
  * [x] **Then is comes to deep learning, size does matter**. My goal is to create a huge dataset with almost every movie/tv show item from criticker.
  * [ ] **Ratings and Reviews**.
 
+`great_expectations` tool is used for Data Quality purposes, check here the [datadocs](https://storage.googleapis.com/criticker-datadoc/index.html)
+
 ## Content
 
 `movies.csv` contains almost every movie/tv show from criticker. For each item the following fields are available (wherever is applicable):

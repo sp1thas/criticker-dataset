@@ -1,7 +1,7 @@
 import scrapy  # type: ignore
 
-from .movies_spider import MoviesSpider
-from ..items import CritickerGamesItem
+from criticker.criticker.items import CritickerGamesItem
+from criticker.criticker.spiders.movies_spider import MoviesSpider
 
 
 class GamesSpider(MoviesSpider):
@@ -15,6 +15,7 @@ class GamesSpider(MoviesSpider):
         """
         Extract data from given item url
         :param response: scrapy response object
+        :param on_netflix: is on netflix
         :return: Criticker Game item object
         """
         game_data = CritickerGamesItem()
@@ -47,11 +48,14 @@ class GamesSpider(MoviesSpider):
             hi_ = hi.attrib["id"]
             label = self.extract_label_from_id(hi_)
             if "aka" in label:
-                game_data[label] = response.xpath(
-                    '//p[@id="{}"]/text()'.format(hi_)
-                ).extract_first()
+                game_data[label] = (
+                    response.xpath('//p[@id="{}"]/text()'.format(hi_))
+                    .extract_first()
+                    .replace("AKA: ", "")
+                )
             else:
                 game_data[label] = self.extract_more_info(hi)
+
         game_data["trailer_url"] = response.xpath(
             '//div[@id="fi_trailer"]/iframe/@src'
         ).extract_first()

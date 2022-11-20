@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "criticker-dataset"
 version = "1.0"
-description = "Implementation of Critiket Dataset"
+description = "Implementation of Critiker Dataset"
 authors = ["Panagiotis Simakis <sp1thas@autistici.org>"]
 license = "GPL v3"
 
@@ -10,6 +10,10 @@ python = ">=3.8,<3.11"
 Scrapy = "^2.7.1"
 Pillow = "^9.3.0"
 pandas = "^1.5.1"
+great-expectations = "^0.15.34"
+great-expectations-experimental = "^0.1.20221117059"
+google-api-python-client = "^2.66.0"
+google-cloud-storage = "^2.6.0"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.990"

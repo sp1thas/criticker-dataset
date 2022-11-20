@@ -3,10 +3,13 @@
 ![build](https://github.com/sp1thas/criticker-dataset/workflows/build/badge.svg)
 ![python-version](https://img.shields.io/badge/Python-3.%5B8--10%5D-blue)
 [![kaggle-dataset](https://img.shields.io/badge/KAGGLE_DATASET-20beff)](https://www.kaggle.com/sp1thas/criticker-dataset/) 
+![great_expectations](https://img.shields.io/badge/-great__expectations-white)
 
 Yet another dataset about Movies, TV Shows and Games.
 
 This is implementation of [Criticker Dataset](https://www.kaggle.com/sp1thas/criticker-dataset). This repository contains the necessesary spiders for dataset creation alongside with some basic tests.
+
+`great_expectations` tool is used for Data Quality purposes, check here the [datadocs](https://storage.googleapis.com/criticker-datadoc/index.html)
 
 `poetry` module is used for virtual environment and dependency management
 

@@ -7,7 +7,7 @@ import typing as t
 import pandas as pd
 import scrapy  # type: ignore
 
-from ..items import CritickerMoviesItem
+from criticker.criticker.items import CritickerMoviesItem
 
 
 class MoviesSpider(scrapy.Spider):
@@ -147,9 +147,11 @@ class MoviesSpider(scrapy.Spider):
             hi_ = hi.attrib["id"]
             label = self.extract_label_from_id(hi_)
             if "aka" in label:
-                movie_data[label] = response.xpath(
-                    '//p[@id="{}"]/text()'.format(hi_)
-                ).extract_first()
+                movie_data[label] = (
+                    response.xpath('//p[@id="{}"]/text()'.format(hi_))
+                    .extract_first()
+                    .replace("AKA: ", "")
+                )
             else:
                 movie_data[label] = self.extract_more_info(hi)
         movie_data["trailer_url"] = response.xpath(
