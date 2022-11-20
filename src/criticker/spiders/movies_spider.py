@@ -7,7 +7,7 @@ import typing as t
 import pandas as pd
 import scrapy  # type: ignore
 
-from criticker.criticker.items import CritickerMoviesItem
+from criticker.items import CritickerMoviesItem  # type: ignore
 
 
 class MoviesSpider(scrapy.Spider):

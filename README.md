@@ -21,10 +21,10 @@ poetry install
 
 ## Create dataset from scratch
 
-```python
-cd criticker
-poetry run scrapy crawl games_spider -o games.csv # to retrieve games
-poetry run scrapy crawl movies_spider -o movies.csv # to retrieve movies
+```shell
+cd src
+poetry run scrapy crawl games_spider -o ../data/games.csv # to retrieve games
+poetry run scrapy crawl movies_spider -o ../data/movies.csv # to retrieve movies
 ```
 
 ## Development
@@ -32,7 +32,7 @@ poetry run scrapy crawl movies_spider -o movies.csv # to retrieve movies
 ### Run tests
 
 ```shell
-poetry run python criticker/tests.py
+poetry run pytest
 ```
 
 ## Next steps

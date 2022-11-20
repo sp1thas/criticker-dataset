@@ -5,3 +5,4 @@ venv/
 *.pyc
 *.jsonlines
 *.jsonl
+.mypy_cache/

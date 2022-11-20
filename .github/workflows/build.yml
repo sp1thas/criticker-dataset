@@ -35,4 +35,4 @@ jobs:
         poetry run mypy .
     - name: Run tests
       run: |
-        poetry run python criticker/tests.py
+        poetry run pytest
