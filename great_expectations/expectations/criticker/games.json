@@ -10,6 +10,13 @@
       }
     },
     {
+      "expectation_type": "expect_column_values_to_be_valid_urls",
+      "kwargs": {
+        "column": "image_urls",
+        "mostly": 0.99
+      }
+    },
+    {
       "expectation_type": "expect_column_values_to_not_be_null",
       "kwargs": {
         "column": "uid",
