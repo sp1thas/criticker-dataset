@@ -1,7 +1,7 @@
 import scrapy  # type: ignore
 
-from criticker.items import CritickerGamesItem  # type: ignore
-from criticker.spiders.movies_spider import MoviesSpider  # type: ignore
+from src.criticker.items import CritickerGamesItem  # type: ignore
+from src.criticker.spiders.movies_spider import MoviesSpider  # type: ignore
 
 
 class GamesSpider(MoviesSpider):

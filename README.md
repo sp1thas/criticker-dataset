@@ -1,8 +1,9 @@
 ![criticker-dataset](https://www.criticker.com/img/sys/title_filmstv.png) **Dataset**
 
-![build](https://github.com/sp1thas/criticker-dataset/workflows/build/badge.svg)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/sp1thas/criticker-dataset/master.svg)](https://results.pre-commit.ci/latest/github/sp1thas/criticker-dataset/master)
+![testing](https://github.com/sp1thas/criticker-dataset/workflows/testing/badge.svg)
 ![python-version](https://img.shields.io/badge/Python-3.%5B8--10%5D-blue)
-[![kaggle-dataset](https://img.shields.io/badge/KAGGLE_DATASET-20beff)](https://www.kaggle.com/sp1thas/criticker-dataset/) 
+[![kaggle-dataset](https://img.shields.io/badge/KAGGLE_DATASET-20beff)](https://www.kaggle.com/sp1thas/criticker-dataset/)
 [![great_expectations](https://img.shields.io/badge/-great__expectations-white.svg)](https://storage.googleapis.com/criticker-datadoc/index.html)
 
 Yet another dataset about Movies, TV Shows and Games.
@@ -22,9 +23,8 @@ poetry install
 ## Create dataset from scratch
 
 ```shell
-cd src
-poetry run scrapy crawl games_spider -o ../data/games.csv # to retrieve games
-poetry run scrapy crawl movies_spider -o ../data/movies.csv # to retrieve movies
+poetry run scrapy crawl games_spider -o data/raw/games.csv # to retrieve games
+poetry run scrapy crawl movies_spider -o data/raw/movies.csv # to retrieve movies
 ```
 
 ## Development

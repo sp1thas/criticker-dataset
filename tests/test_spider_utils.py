@@ -1,6 +1,6 @@
 import unittest
 
-from criticker.spiders.movies_spider import MoviesSpider  # type: ignore
+from src.criticker.spiders.movies_spider import MoviesSpider  # type: ignore
 
 
 class ScrapyTests(unittest.TestCase):

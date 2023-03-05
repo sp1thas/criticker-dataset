@@ -27,16 +27,16 @@
       "expectation_type": "expect_column_values_to_be_between",
       "kwargs": {
         "column": "avg_percentile",
-        "min_value": 0,
-        "max_value": 100
+        "max_value": 100,
+        "min_value": 0
       }
     },
     {
       "expectation_type": "expect_column_values_to_be_between",
       "kwargs": {
         "column": "date_published",
-        "min_value": 1500,
-        "max_value": 2022
+        "max_value": 2022,
+        "min_value": 1500
       }
     },
     {

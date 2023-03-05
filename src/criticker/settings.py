@@ -9,8 +9,8 @@
 
 BOT_NAME = "criticker"
 
-SPIDER_MODULES = ["criticker.spiders"]
-NEWSPIDER_MODULE = "criticker.spiders"
+SPIDER_MODULES = ["src.criticker.spiders"]
+NEWSPIDER_MODULE = "src.criticker.spiders"
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -63,7 +63,7 @@ CONCURRENT_REQUESTS_PER_DOMAIN = 2
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    "criticker.pipelines.FolderStructureImagePipeline": 300,
+    "src.criticker.pipelines.FolderStructureImagePipeline": 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
