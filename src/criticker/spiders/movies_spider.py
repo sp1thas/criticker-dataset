@@ -7,7 +7,7 @@ import typing as t
 import pandas as pd
 import scrapy  # type: ignore
 
-from criticker.items import CritickerMoviesItem  # type: ignore
+from src.criticker.items import CritickerMoviesItem  # type: ignore
 
 
 class MoviesSpider(scrapy.Spider):
@@ -17,7 +17,7 @@ class MoviesSpider(scrapy.Spider):
         "https://www.criticker.com/films",
     ]
 
-    slugify_spaces_re = re.compile(r'[\s+\=+\-\[\]\'"]')
+    slugify_spaces_re = re.compile(r"[\s+\=+\-\[\]'\"]")
     slugiry_remove_re = re.compile(r'\[\]{\}\'":;<>\?!@#\$%\^&\*\(\)~`')
     already_harvested: t.Set[str] = set()
 
@@ -31,7 +31,9 @@ class MoviesSpider(scrapy.Spider):
             gc.collect()
         super().__init__(**kwargs)  # python3
 
-    def parse(self, response: scrapy.http.response.Response) -> scrapy.Request:
+    def parse(
+        self, response: scrapy.http.response.Response, **kwargs
+    ) -> scrapy.Request:
         """
         Main scrapy parser
 
@@ -76,7 +78,8 @@ class MoviesSpider(scrapy.Spider):
         """
         return self.slugify(div_id.split("_")[-1])
 
-    def extract_uid_from_url(self, url: str) -> str:
+    @staticmethod
+    def extract_uid_from_url(url: str) -> str:
         """
         Create uid (md5) based on given url
 
@@ -86,7 +89,8 @@ class MoviesSpider(scrapy.Spider):
         r = hashlib.md5(url.strip("/").split("/")[-1].encode())
         return r.hexdigest()
 
-    def extract_more_info(self, elem: scrapy.Selector) -> t.Optional[str]:  # type: ignore
+    @staticmethod
+    def extract_more_info(elem: scrapy.Selector) -> t.Optional[str]:  # type: ignore
         """
         Extract more infos from given scrapy selector
 
@@ -105,6 +109,7 @@ class MoviesSpider(scrapy.Spider):
         Extract data from given item url
 
         :param response: scrapy response object
+        :param on_netflix: on netflix flag
         :return: Criticker Movies item object
         """
         movie_data = CritickerMoviesItem()

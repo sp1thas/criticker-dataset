@@ -36,9 +36,8 @@ Yet another dataset about movies. This dataset consists of more than 100K movies
 | type           | Type like Short Film, TV Show and others. Empty type means that item is probably a regular film | str        |
 | uid            | md5 Unique ID                                                                                   | str        |
 | url            | URL                                                                                             | str        |
-| writers        | Comma-separated writers' names                                                                  | str        | 
+| writers        | Comma-separated writers' names                                                                  | str        |
 
 ## Next Steps
 
  * [ ] Add ratings and reviews
-  
