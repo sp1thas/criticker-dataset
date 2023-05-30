@@ -24,6 +24,9 @@ poetry install
 
 ```shell
 poetry run scrapy crawl games_spider -o data/raw/games.csv # to retrieve games
+# export login username and password
+export C_USERNAME='<USERNAME>'
+export C_PASSWORD='<PASSWORD>'
 poetry run scrapy crawl movies_spider -o data/raw/movies.csv # to retrieve movies
 ```
 
