@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import gc
 import hashlib
 import os
@@ -18,6 +17,7 @@ class MoviesSpider(scrapy.Spider):
     slugify_spaces_re = re.compile(r"[\s+\=+\-\[\]'\"]")
     slugiry_remove_re = re.compile(r'\[\]{\}\'":;<>\?!@#\$%\^&\*\(\)~`')
     already_harvested: t.Set[str] = set()
+    imdb_title_id_re = re.compile(r"title/(\w+)")
 
     def __init__(self, old_file: str = "", **kwargs):
         if old_file:
@@ -30,16 +30,19 @@ class MoviesSpider(scrapy.Spider):
         super().__init__(**kwargs)  # python3
 
     def start_requests(self):
-        login_url = 'https://www.criticker.com/signin/'
-        return scrapy.FormRequest(
-            login_url,
+        yield scrapy.FormRequest(
+            "https://www.criticker.com/authenticate.php",
             formdata={
-                'si_username': os.environ['USERNAME'],
-                'si_password': os.environ['PASSWORD'],
-                'goto': 'https://www.criticker.com/films'
+                "si_username": os.environ["C_USERNAME"],
+                "si_password": os.environ["C_PASSWORD"],
+                "goto": "https://www.criticker.com/signedout/",
             },
-            callback=self.parse
+            callback=self._main_page,
+            method="POST",
         )
+
+    def _main_page(self, response, **kwargs):
+        yield scrapy.Request("https://www.criticker.com/films/", callback=self.parse)
 
     def parse(
         self, response: scrapy.http.response.Response, **kwargs
@@ -151,6 +154,14 @@ class MoviesSpider(scrapy.Spider):
             ]
         ).strip()
 
+        movie_data["imdb_url"] = response.xpath(
+            '//p[@class="fi_extrainfo" and contains(., "More information at")]/a[text()="IMDb"]/@href'
+        ).extract_first()
+        if movie_data.get("imdb_url"):
+            movie_data["imdb_title_id"] = re.search(  # type: ignore
+                self.imdb_title_id_re, movie_data["imdb_url"]
+            ).group(1)
+
         if not movie_data["description"]:
             movie_data["description"] = None
 
@@ -159,16 +170,20 @@ class MoviesSpider(scrapy.Spider):
         h = more_info_elem.xpath("./p")
 
         for i, hi in enumerate(h):
-            hi_ = hi.attrib["id"]
-            label = self.extract_label_from_id(hi_)
-            if "aka" in label:
-                movie_data[label] = (
-                    response.xpath('//p[@id="{}"]/text()'.format(hi_))
-                    .extract_first()
-                    .replace("AKA: ", "")
-                )
-            else:
-                movie_data[label] = self.extract_more_info(hi)
+            try:
+                hi_ = hi.attrib["id"]
+                label = self.extract_label_from_id(hi_)
+                if "aka" in label:
+                    movie_data[label] = (
+                        response.xpath('//p[@id="{}"]/text()'.format(hi_))
+                        .extract_first()
+                        .replace("AKA: ", "")
+                    )
+                else:
+                    if label in movie_data.fields:
+                        movie_data[label] = self.extract_more_info(hi)
+            except:
+                continue
         movie_data["trailer_url"] = response.xpath(
             '//div[@id="fi_trailer"]/iframe/@src'
         ).extract_first()

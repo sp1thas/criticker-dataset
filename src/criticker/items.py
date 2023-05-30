@@ -51,3 +51,5 @@ class CritickerMoviesItem(CritickerBaseItem):
     start_date = scrapy.Field(serializer=int_serializer)
     end_date = scrapy.Field(serializer=int_serializer)
     episode = scrapy.Field(serializer=string_serializer)
+    imdb_url = scrapy.Field(serializer=string_serializer)
+    imdb_title_id = scrapy.Field(serializer=string_serializer)
