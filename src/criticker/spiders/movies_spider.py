@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import gc
 import hashlib
+import os
 import re
 import typing as t
 
@@ -13,9 +14,6 @@ from src.criticker.items import CritickerMoviesItem  # type: ignore
 class MoviesSpider(scrapy.Spider):
     name = "movies_spider"
     allowed_domains = ["criticker.com"]
-    start_urls = [
-        "https://www.criticker.com/films",
-    ]
 
     slugify_spaces_re = re.compile(r"[\s+\=+\-\[\]'\"]")
     slugiry_remove_re = re.compile(r'\[\]{\}\'":;<>\?!@#\$%\^&\*\(\)~`')
@@ -30,6 +28,18 @@ class MoviesSpider(scrapy.Spider):
             del df
             gc.collect()
         super().__init__(**kwargs)  # python3
+
+    def start_requests(self):
+        login_url = 'https://www.criticker.com/signin/'
+        return scrapy.FormRequest(
+            login_url,
+            formdata={
+                'si_username': os.environ['USERNAME'],
+                'si_password': os.environ['PASSWORD'],
+                'goto': 'https://www.criticker.com/films'
+            },
+            callback=self.parse
+        )
 
     def parse(
         self, response: scrapy.http.response.Response, **kwargs
