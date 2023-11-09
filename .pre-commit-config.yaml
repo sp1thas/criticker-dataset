@@ -4,7 +4,7 @@ ci:
 repos:
 
 -   repo: https://github.com/python-poetry/poetry
-    rev: '1.6.0'
+    rev: '1.7.0'
     hooks:
     -   id: poetry-check
         files: '^pyproject\.toml$'
@@ -28,7 +28,7 @@ repos:
     -   id: trailing-whitespace
 
 -   repo: https://github.com/psf/black
-    rev: '23.10.0'
+    rev: '23.10.1'
     hooks:
     -   id: black
 
