@@ -8,7 +8,7 @@ license = "GPL v3"
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
 Scrapy = "^2.7.1"
-Pillow = "^10.0.1"
+Pillow = "^10.2.0"
 pandas = "^1.5.1"
 great-expectations = "^0.15.34"
 great-expectations-experimental = "^0.1.20221117059"
