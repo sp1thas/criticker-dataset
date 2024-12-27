@@ -1,7 +1,6 @@
 ![criticker-dataset](https://www.criticker.com/img/sys/title_filmstv.png) **Dataset**
 
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/sp1thas/criticker-dataset/master.svg)](https://results.pre-commit.ci/latest/github/sp1thas/criticker-dataset/master)
-![testing](https://github.com/sp1thas/criticker-dataset/workflows/testing/badge.svg)
 ![python-version](https://img.shields.io/badge/Python-3.%5B8--10%5D-blue)
 [![kaggle-dataset](https://img.shields.io/badge/KAGGLE_DATASET-20beff)](https://www.kaggle.com/sp1thas/criticker-dataset/)
 [![great_expectations](https://img.shields.io/badge/-great__expectations-white.svg)](https://storage.googleapis.com/criticker-datadoc/index.html)
